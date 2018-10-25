@@ -5,13 +5,14 @@ var favicon = require("serve-favicon");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var mongoose = require("mongoose");
 var cors = require("cors");
+
 //routes
 var indexRouter = require("./routes/index.routes");
 var textRouter = require("./routes/text.routes");
 
 var app = express();
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -40,25 +41,22 @@ app.use(function(req, res, next) {
 // app.use(cors(corsOptions));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-//Set up mongoose connection
-const { MONGO_USER, MONGO_PASS, MONGO_URL } = process.env;
-CONNECTION_URI = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_URL}`;
-mongoose
-  .connect(CONNECTION_URI)
-  .then(() => console.log("Connected to Database"))
-  .catch(e => console.error(e));
+
 app.use("/", indexRouter);
 app.use("/text", textRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
