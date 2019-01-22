@@ -4,12 +4,10 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 module.exports = (controllers) => {
     let api = Router();
     let {directions, translate, message, help, news} = controllers;
-    api.post('/', async (req, res) => {
-        console.log(req);
-        console.log(req.body);
-        console.log(req.body.Body);
+    api.post('/api', async (req, res) => { 
         let messageRaw = req.body.Body;
         let messageParsed = await message.parse(messageRaw);
+        console.log(messageParsed);
         let response;
         console.log('Message Parsed: ', messageParsed);
         if (messageParsed === 'DIRECTIONS') {
@@ -19,14 +17,14 @@ module.exports = (controllers) => {
             response = await translate.getResponse(messageRaw)
             //api.use('/translate', translate(message, controllers));
         } else if (messageParsed === 'NEWS'){
-            response = await news.getResponse(messageRaw)
+            response = await news.getResponse();
     
         } else if (messageParsed === 'HELP') {
             response = help.getResponse();
         } else {
             response = 'Nothing happened';
         }
-
+        console.log('Response inside index.js: ', response);
         const twiml = new MessagingResponse();
         twiml.message(response);
         res.writeHead(200, {'Content-Type': 'text/xml'});
