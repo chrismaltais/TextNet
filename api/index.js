@@ -3,7 +3,7 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
 
 module.exports = (controllers) => {
     let api = Router();
-    let {directions, translate, message, help} = controllers;
+    let {directions, translate, message, help, news} = controllers;
     api.post('/', async (req, res) => {
         console.log(req);
         console.log(req.body);
@@ -18,6 +18,9 @@ module.exports = (controllers) => {
         } else if (messageParsed === 'TRANSLATE') {
             response = await translate.getResponse(messageRaw)
             //api.use('/translate', translate(message, controllers));
+        } else if (messageParsed === 'NEWS'){
+            response = await news.getResponse(messageRaw)
+    
         } else if (messageParsed === 'HELP') {
             response = help.getResponse();
         } else {
