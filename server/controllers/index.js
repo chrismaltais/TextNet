@@ -3,5 +3,7 @@ module.exports = {
   translate: require("./translate.controller"),
   message: require("./message.controller"),
   news: require("./news.controller"),
-  wolfram: require("./wolfram.controller.js")
+  wolfram: require("./wolfram.controller.js"),
+  help: require("./help.controller"),
+  recommend: require("./recommend.controller")
 };
