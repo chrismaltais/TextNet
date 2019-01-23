@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "export ENV=test || SET \"NODE_ENV=test\" && jest"
   },
   "author": "",
