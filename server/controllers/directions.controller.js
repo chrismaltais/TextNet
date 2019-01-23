@@ -24,7 +24,7 @@ async function getResponse(message) {
 
     console.log(process.env.MAPS_API_KEY);
 
-    await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${origin_addr}&destination=${dest_addr}&mode=${tranportation_mode}&key=${process.env.MAPS_API_KEY}`)
+    return await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${origin_addr}&destination=${dest_addr}&mode=${tranportation_mode}&key=${process.env.MAPS_API_KEY}`)
     .then(function (response) {
         //Parse Directions
         response.data.routes[0].legs[0].steps.forEach(element => {
@@ -44,8 +44,6 @@ async function getResponse(message) {
     .catch(function (error) {
         console.log(error);
     });
-
-    return 'Go left at the lights';
 }
 
 module.exports = {

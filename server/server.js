@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/', api(controllers))
+app.use('/', api(controllers));
 
 if (!IS_TEST) {
     app.listen(port, () => {
