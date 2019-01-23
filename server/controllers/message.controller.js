@@ -16,6 +16,9 @@ async function parse(message) {
     else if(message.includes("DIRECTIONS")){
       return "DIRECTIONS_QUERY";
     }
+    else if(message.includes("RECOMMEND")){
+        return "RECOMMEND_QUERY";
+      }
     else{
       return message;
     }

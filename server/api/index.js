@@ -3,7 +3,7 @@ const MessagingResponse = require("twilio").twiml.MessagingResponse;
 
 module.exports = controllers => {
   let api = Router();
-  let { directions, translate, message, help, news, wolfram } = controllers;
+  let { directions, translate, message, help, news, wolfram, recommend } = controllers;
   api.post("/api", async (req, res) => {
     let messageRaw = req.body.Body;
     let messageParsed = await message.parse(messageRaw);
@@ -19,6 +19,8 @@ module.exports = controllers => {
         response = await news.getResponse();
       } else if (messageParsed === "WOLFRAM_QUERY") {
         response = await wolfram.getResponse(messageRaw);
+      } else if (messageParsed === "RECOMMEND_QUERY") {
+        response = await recommend.getResponse(messageRaw);
       } else if (messageParsed === "TEXTNET_HELP_QUERY") {
         response = help.getResponse();
       } else {
