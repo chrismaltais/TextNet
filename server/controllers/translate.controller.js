@@ -44,7 +44,8 @@ async function getResponse(message) {
 
   var result = await translate(stringToTranslate, languageTo);
   console.log(result);
-  return result.data;
+  
+  return result;
 }
 
 module.exports = {
