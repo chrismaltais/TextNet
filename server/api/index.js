@@ -22,11 +22,11 @@ module.exports = controllers => {
       } else if (messageParsed === "TEXTNET_HELP_QUERY") {
         response = help.getResponse();
       } else {
-        response = "Your query is invalid, reexamine the formatting guidelines and try again :)";
+        response = 'Your query is invalid, please try again.  Texting "help" will return our formatting guidelines :)';
       }
     }
     catch(err){
-      response = "Your query is invalid, reexamine the formatting guidelines and try again :)"
+      response = 'Your query is invalid, please try again.  Texting "help" will return our formatting guidelines :)';
       console.log(err);
     }
     console.log("Response inside index.js: ", response);
