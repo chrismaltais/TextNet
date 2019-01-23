@@ -27,6 +27,7 @@ module.exports = controllers => {
     }
     catch(err){
       response = "Your query is invalid, reexamine the formatting guidelines and try again :)"
+      console.log(err);
     }
     console.log("Response inside index.js: ", response);
     const twiml = new MessagingResponse();

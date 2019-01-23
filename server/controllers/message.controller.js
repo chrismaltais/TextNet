@@ -1,5 +1,6 @@
 async function parse(message) {
     message = message.toUpperCase();
+    // Refactor to begins with?  A business name could have these substrings.
     if(message.includes("WHO") || message.includes("WHAT") || message.includes("WHERE") || message.includes("HOW")|| message.includes("WHY") || message.includes("WHEN")){
       return "WOLFRAM_QUERY";
     }
