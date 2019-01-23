@@ -1,6 +1,6 @@
 async function parse(message) {
     message = message.toUpperCase();
-    if(message.includes("WHO") || message.includes("WHO") || message.includes("WHAT") || message.includes("WHERE") || message.includes("HOW")|| message.includes("WHY") || message.includes("WHEN")){
+    if(message.includes("WHO") || message.includes("WHAT") || message.includes("WHERE") || message.includes("HOW")|| message.includes("WHY") || message.includes("WHEN")){
       return "WOLFRAM_QUERY";
     }
     else if(message.includes("TRANSLATE")){
@@ -9,8 +9,8 @@ async function parse(message) {
     else if(message.includes("NEWS")){
       return "NEWS_QUERY";
     }
-    else if(message.includes("HELP")){
-      return "HELP_QUERY";
+    else if(message.includes("TEXTNET")){
+      return "TEXTNET_HELP_QUERY";
     }
     else if(message.includes("DIRECTIONS")){
       return "DIRECTIONS_QUERY";

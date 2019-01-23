@@ -13,15 +13,13 @@ module.exports = controllers => {
     try{
       if (messageParsed === "DIRECTIONS_QUERY") {
         response = await directions.getResponse(messageRaw);
-        //api.use('/directions', directions(message))
       } else if (messageParsed === "TRANSLATE_QUERY") {
         response = await translate.getResponse(messageRaw);
-        //api.use('/translate', translate(message, controllers));
       } else if (messageParsed === "NEWS_QUERY") {
         response = await news.getResponse();
       } else if (messageParsed === "WOLFRAM_QUERY") {
         response = await wolfram.getResponse(messageRaw);
-      } else if (messageParsed === "HELP_QUERY") {
+      } else if (messageParsed === "TEXTNET_HELP_QUERY") {
         response = help.getResponse();
       } else {
         response = "Your query is invalid, reexamine the formatting guidelines and try again :)";
