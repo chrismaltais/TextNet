@@ -10,20 +10,23 @@ module.exports = controllers => {
     console.log(messageParsed);
     let response;
     console.log("Message Parsed: ", messageParsed);
-    if (messageParsed === "DIRECTIONS") {
-      response = await directions.getResponse(messageRaw);
-      //api.use('/directions', directions(message))
-    } else if (messageParsed === "TRANSLATE") {
-      response = await translate.getResponse(messageRaw);
-      //api.use('/translate', translate(message, controllers));
-    } else if (messageParsed === "NEWS") {
-      response = await news.getResponse();
-    } else if (["WHO", "WHAT", "WHERE", "HOW", "WHY", "WHEN"].includes(messageParsed)) {
-      response = await wolfram.getResponse(messageRaw);
-    } else if (messageParsed === "HELP") {
-      response = help.getResponse();
-    } else {
-      response = "Nothing happened";
+    try{
+      if (messageParsed === "DIRECTIONS_QUERY") {
+        response = await directions.getResponse(messageRaw);
+      } else if (messageParsed === "TRANSLATE_QUERY") {
+        response = await translate.getResponse(messageRaw);
+      } else if (messageParsed === "NEWS_QUERY") {
+        response = await news.getResponse();
+      } else if (messageParsed === "WOLFRAM_QUERY") {
+        response = await wolfram.getResponse(messageRaw);
+      } else if (messageParsed === "TEXTNET_HELP_QUERY") {
+        response = help.getResponse();
+      } else {
+        response = "Your query is invalid, reexamine the formatting guidelines and try again :)";
+      }
+    }
+    catch(err){
+      response = "Your query is invalid, reexamine the formatting guidelines and try again :)"
     }
     console.log("Response inside index.js: ", response);
     const twiml = new MessagingResponse();
