@@ -7,7 +7,6 @@ module.exports = controllers => {
   api.post("/api", async (req, res) => {
     let messageRaw = req.body.Body;
     let messageParsed = await message.parse(messageRaw);
-    console.log(messageParsed);
     let response;
     console.log("Message Parsed: ", messageParsed);
     try{

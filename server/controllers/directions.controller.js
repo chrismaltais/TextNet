@@ -11,13 +11,8 @@ async function getResponse(message) {
         return 'Invalid direction formatting.  You\'re likely missing the "from" or "to" keywords! Texting "textnet" will return our formatting guidelines :)';
     }
 
-    console.log("passed invalid test");
-
     let origin_addr = encodeURIComponent(message.substring(message.indexOf("from") + 5, message.lastIndexOf(" to ")).trim());
     let dest_addr = encodeURIComponent(message.substring(message.lastIndexOf(" to ") + 4, message.length).trim());
-
-    console.log(message.substring(message.indexOf("from") + 5, message.lastIndexOf(" to ")).trim());
-    console.log(message.substring(message.lastIndexOf(" to ") + 4, message.length).trim());
 
     let tranportation_mode = 'driving';
 
@@ -32,8 +27,6 @@ async function getResponse(message) {
     } else{
         tranportation_mode = 'driving';
     }
-
-    console.log(process.env.MAPS_API_KEY);
 
     return await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${origin_addr}&destination=${dest_addr}&mode=${tranportation_mode}&key=${process.env.MAPS_API_KEY}`)
     .then(function (response) {
