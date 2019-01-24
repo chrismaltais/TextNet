@@ -1,5 +1,6 @@
 const { Translate } = require("@google-cloud/translate");
 const fs = require("fs");
+const path = require('path');
 
 async function translate(stringToTranslate, languageTo) {
   console.log(stringToTranslate, languageTo);
@@ -8,7 +9,7 @@ async function translate(stringToTranslate, languageTo) {
 
   // Instantiates a client
   const translate = new Translate();
-  let rawdata = fs.readFileSync("./helpers/languageCode.json");
+  let rawdata = fs.readFileSync(path.resolve(__dirname, "../helpers/languageCode.json"));
   let languages = JSON.parse(rawdata);
   for (var i = 0; i < languages.length; i++) {
     if (languageTo.toLowerCase() === languages[i]["name"].toLowerCase()) {
