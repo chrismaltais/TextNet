@@ -1,27 +1,35 @@
 async function parse(message) {
     message = message.toUpperCase();
-    // Refactor to begins with?  A business name could have these substrings.
-    if(message.includes("WHO") || message.includes("WHAT") || message.includes("WHERE") || message.includes("HOW")|| message.includes("WHY") || message.includes("WHEN")){
-      return "WOLFRAM_QUERY";
+
+    const messageArr = message.split(" ");
+
+      if(messageArr[0] ==="WHO" ||
+          messageArr[0]==="WHAT" ||
+          messageArr[0]==="WHERE" ||
+          messageArr[0]==="HOW"||
+          messageArr[0]==="WHY"||
+          messageArr[0]==="WHEN") {
+          return "WOLFRAM_QUERY";
+          }
+    else if(messageArr[0] ==="TRANSLATE"){
+        return "TRANSLATE_QUERY";
     }
-    else if(message.includes("TRANSLATE")){
-      return "TRANSLATE_QUERY";
+    else if(messageArr[0] ==="NEWS"){
+        return "NEWS_QUERY";
     }
-    else if(message.includes("NEWS")){
-      return "NEWS_QUERY";
+    else if(messageArr[0] ==="TEXTNET"){
+        return "TEXTNET_HELP_QUERY";
     }
-    else if(message.includes("TEXTNET")){
-      return "TEXTNET_HELP_QUERY";
+    else if(messageArr[0] ==="DIRECTIONS"){
+        return "DIRECTIONS_QUERY";
     }
-    else if(message.includes("DIRECTIONS")){
-      return "DIRECTIONS_QUERY";
-    }
-    else if(message.includes("RECOMMEND")){
+    else if(messageArr[0] ==="RECOMMEND"){
         return "RECOMMEND_QUERY";
-      }
-    else{
-      return message;
     }
+    else{
+        return "INVALID_QUERY";
+    }
+
 }
 
 module.exports = {
