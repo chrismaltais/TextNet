@@ -1,1 +1,4 @@
 node_modules/
+server/.env
+server/helpers/google_key.json
+.DS_Store
