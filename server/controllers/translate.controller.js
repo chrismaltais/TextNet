@@ -3,7 +3,6 @@ const fs = require("fs");
 const path = require('path');
 
 async function translate(stringToTranslate, languageTo) {
-  console.log(stringToTranslate, languageTo);
   // Your Google Cloud Platform project ID
   translateResult = "";
 
@@ -49,7 +48,6 @@ async function getResponse(message) {
     .trim();
 
   var result = await translate(stringToTranslate, languageTo);
-  console.log(result);
   
   return result;
 }

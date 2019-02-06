@@ -30,7 +30,6 @@ module.exports = controllers => {
       response = 'Your query is invalid, please try again.  Texting "textnet" will return our formatting guidelines :)';
       console.log(err);
     }
-    console.log("Response inside index.js: ", response);
     const twiml = new MessagingResponse();
     twiml.message(response);
     res.writeHead(200, { "Content-Type": "text/xml" });
