@@ -11,10 +11,15 @@ async function translate(stringToTranslate, languageTo) {
   const translate = new Translate();
   let rawdata = fs.readFileSync(path.resolve(__dirname, "../helpers/languageCode.json"));
   let languages = JSON.parse(rawdata);
+  var langCode = null;
   for (var i = 0; i < languages.length; i++) {
     if (languageTo.toLowerCase() === languages[i]["name"].toLowerCase()) {
-      var langCode = languages[i]["code"];
+      langCode = languages[i]["code"];
     }
+  }
+
+  if (!langCode) {
+    return `Unfortunately, ${languageTo} is not a language we can translate to!`
   }
 
   return await new Promise((resolve, reject) => {
