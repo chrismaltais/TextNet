@@ -11,7 +11,7 @@ async function getResponse(message) {
     return  errorString
   }
 
-  let result = response.data.replace("Wolfram|Alpha", "TextNet");
+  let result = response.data.replace("Wolfram Alpha", "TextNet");
   return result;
 }
 

@@ -7,7 +7,6 @@ async function getResponse() {
     console.log(error);
   });
 
-  console.log(response);
   if(response.status != 200){
     return err_msg;
   }
