@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto+Mono" rel="stylesheet">
     <title>Document</title>
 </head>
 <style>
@@ -21,11 +22,43 @@
         background-attachment: fixed;
         background-position: center; 
     }
-    
+
+    .number-container{
+        position: fixed;
+        text-align: center;
+        font-family: 'Quicksand', sans-serif;
+        font-size:2rem;
+        top:55%;
+        left:0;
+        right:0;
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .number-container{
+            font-size:3vw;
+        }
+    }
+    @media only screen and (max-width: 1000px) {
+        .number-container{
+            font: size 2.5vw;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        .number-container{
+            font-size:5vw;
+        }
+    }
+
+ 
 </style>
 <body>
     <div class ="logo-container">
-        
+        <div class="number-container">
+            <h4 style="margin-block-end: 0px;">Internet over SMS, text 'textnet' to:</h4>
+            <h1 style="margin-block-start: 0px; margin-block-end: 0px;">1-613-777-2042</h1>
+            <h4 style="margin-block-start: 0px;"></h4>
+        </div>
     </div>
 </body>
 </html>
