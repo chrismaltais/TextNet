@@ -42,7 +42,7 @@ async function getResponse(message) {
     .then(function (response) {
         //Parse Directions
         if(response.data.status === 'NOT_FOUND') {
-            return "NOT_FOUND";
+            return "Directions not found :( \nPlease check your formatting.";
         }
         response.data.routes[0].legs[0].steps.forEach(element => {
             let curr_step = element.html_instructions +" ("+ element.distance.text+")";
@@ -64,6 +64,7 @@ async function getResponse(message) {
     })
     .catch(function (error) {
         console.log(error);
+        return "Directions not found :( \nPlease check your formatting.";
     });
 }
 

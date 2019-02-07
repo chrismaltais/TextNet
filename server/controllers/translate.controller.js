@@ -37,6 +37,10 @@ async function translate(stringToTranslate, languageTo) {
 }
 
 async function getResponse(message) {
+
+  if (message.lastIndexOf(" to ") == -1){
+    return 'Invalid translation formatting.  You\'re missing the "to" keyword! Texting "textnet" will return our formatting guidelines :)';
+  }
   var stringToTranslate = message
     .substring(
       message.lastIndexOf("translate ") + 10,

@@ -8,7 +8,9 @@ async function parse(message) {
           messageArr[0]==="WHERE" ||
           messageArr[0]==="HOW"||
           messageArr[0]==="WHY"||
-          messageArr[0]==="WHEN") {
+          messageArr[0]==="WHEN" ||
+          messageArr[0]==="QUERY")
+          {
           return "WOLFRAM_QUERY";
           }
     else if(messageArr[0] ==="TRANSLATE"){

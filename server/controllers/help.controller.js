@@ -7,7 +7,7 @@ function getResponse() {
         '\n\n4. "recommend" - format: "recommend [business] near [location]"\
                 \nBusiness - for example "food" or "restaurants". The term may also be business names, such as "Starbucks\
                 \nLocation, for example "New York City", "NYC", "350 5th Ave,"',
-        '\n\n6. "query" - format: "[who | what | where | why | when] [any question]'
+        '\n\n6. "query" - format: "[query| who | what | where | why | when] [any question]'
       ].join("\n");
     return message;
 }
