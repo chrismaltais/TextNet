@@ -3,16 +3,16 @@ async function parse(message) {
 
     const messageArr = message.split(" ");
 
-      if(messageArr[0] ==="WHO" ||
-          messageArr[0]==="WHAT" ||
-          messageArr[0]==="WHERE" ||
-          messageArr[0]==="HOW"||
-          messageArr[0]==="WHY"||
-          messageArr[0]==="WHEN" ||
-          messageArr[0]==="QUERY")
-          {
-          return "WOLFRAM_QUERY";
-          }
+    if(messageArr[0] ==="WHO" ||
+        messageArr[0]==="WHAT" ||
+        messageArr[0]==="WHERE" ||
+        messageArr[0]==="HOW"||
+        messageArr[0]==="WHY"||
+        messageArr[0]==="WHEN" ||
+        messageArr[0]==="QUERY")
+        {
+        return "WOLFRAM_QUERY";
+        }
     else if(messageArr[0] ==="TRANSLATE"){
         return "TRANSLATE_QUERY";
     }

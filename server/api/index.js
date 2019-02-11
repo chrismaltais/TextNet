@@ -27,7 +27,7 @@ module.exports = controllers => {
       }
     }
     catch(err){
-      response = 'Your query is invalid, please try again.  Texting "textnet" will return our formatting guidelines :)';
+      response = 'Something went wrong, please try again.  Texting "textnet" will return our formatting guidelines :)';
       console.log(err);
     }
     const twiml = new MessagingResponse();

@@ -7,9 +7,7 @@ async function getResponse(message) {
   if(query.split(" ")[0].toUpperCase() === "QUERY"){
     let idx_to_split = query.toUpperCase().indexOf("QUERY") + 5;
     query = query.substring(idx_to_split).trim();
-    console.log('query keyword found idx: ', idx_to_split);
   }
-  console.log(query);
   try {
     response = await axios.get(
       `http://api.wolframalpha.com/v1/result?appid=WLAQQ9-YP923PK67P&i=${query}`

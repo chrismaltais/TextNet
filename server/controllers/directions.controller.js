@@ -6,18 +6,18 @@ async function getResponse(message) {
     let res = '';
     let invalidFormattingMessage = 'Invalid direction formatting.  You\'re likely missing the "from" or "to" keywords! Texting "textnet" will return our formatting guidelines :)';
     
-    message = message.trim(); // trim extra spaces
-
     // Check for validity of formatting
-    if(message.indexOf(" from ") === -1 || message.indexOf(" to ") === -1)
+    if(message.includes(" from ") == false || message.includes(" to ") == false)
     {
         return invalidFormattingMessage;
     }
 
+    message = message.trim(); // trim extra spaces
+
     let origin_addr = encodeURIComponent(message.substring(message.indexOf("from") + 5, message.lastIndexOf(" to ")).trim());
     let dest_addr_raw = message.substring(message.lastIndexOf(" to ") + 4, message.length).trim();
     let dest_addr = encodeURIComponent(dest_addr_raw);
-    
+
     // Check that origin & destination have contents
     if(!origin_addr || !dest_addr)
     {
@@ -50,10 +50,7 @@ async function getResponse(message) {
             directionList.push(striptags(curr_step,["div"]).replace(regex, " "));
             res = directionList.join('\n\n');
          });
-    }).then((err) =>{
-        if(err){
-            return "Directions not found :( \nPlease check your formatting.";
-        }
+
         let trans_mode = `${tranportation_mode.charAt(0).toUpperCase() + tranportation_mode.substring(1)}` + " directions to " + `${dest_addr_raw}`;
         let trailer = "\n .... [Directions too long. Submit another request once you reach the last direction in the list]";
         if(res.length + trans_mode.length + trailer.length > 1000){
@@ -61,6 +58,7 @@ async function getResponse(message) {
         }else{
             return trans_mode + "\n" + res;
         }
+
     })
     .catch(function (error) {
         console.log(error);
