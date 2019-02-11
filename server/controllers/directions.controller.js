@@ -1,11 +1,11 @@
 const axios = require('axios');
 const striptags = require('striptags');
-let directionList = [];
+
 
 async function getResponse(message) {
     let res = '';
     let invalidFormattingMessage = 'Invalid direction formatting.  You\'re likely missing the "from" or "to" keywords! Texting "textnet" will return our formatting guidelines :)';
-    
+    let directionList = [];
     // Check for validity of formatting
     if(message.includes(" from ") == false || message.includes(" to ") == false)
     {
@@ -14,7 +14,9 @@ async function getResponse(message) {
 
     message = message.trim(); // trim extra spaces
 
-    let origin_addr = encodeURIComponent(message.substring(message.indexOf("from") + 5, message.lastIndexOf(" to ")).trim());
+    let origin_addr_raw = message.substring(message.indexOf("from") + 5, message.lastIndexOf(" to ")).trim();
+    let origin_addr = encodeURIComponent(origin_addr_raw);
+    
     let dest_addr_raw = message.substring(message.lastIndexOf(" to ") + 4, message.length).trim();
     let dest_addr = encodeURIComponent(dest_addr_raw);
 
@@ -23,6 +25,8 @@ async function getResponse(message) {
     {
         return invalidFormattingMessage;
     }
+
+    console.log(`Directions - Origin: ${origin_addr_raw}, Destination: ${dest_addr_raw}`);
 
     let tranportation_mode = 'driving';
 
