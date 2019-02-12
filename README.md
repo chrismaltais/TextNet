@@ -6,8 +6,8 @@ The new and improved 490 Capstone Project
 `docker build -t textnet .`
 > This builds your docker image named `textnet` of the application (via the Dockerfile) to be run on a process on your computer
 
-`docker run -d  textnet`
-> This boots up your `textnet` image in a container in the background
+`docker run -p 3000:3000 -d textnet`
+> This boots up your `textnet` image in a container in the background, and binds the container port to port 3000 on your host machine
 
 `docker ps`
 > Ensure the container is running
