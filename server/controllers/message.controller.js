@@ -1,37 +1,29 @@
 async function parse(message) {
     message = message.toUpperCase();
 
-    const messageArr = message.split(" ");
+    const wordsInMessage = message.split(" ");
 
-    if(messageArr[0] ==="WHO" ||
-        messageArr[0]==="WHAT" ||
-        messageArr[0]==="WHERE" ||
-        messageArr[0]==="HOW"||
-        messageArr[0]==="WHY"||
-        messageArr[0]==="WHEN" ||
-        messageArr[0]==="QUERY")
-        {
+    if(wordsInMessage[0] ==="WHO" ||
+        wordsInMessage[0]==="WHAT" ||
+        wordsInMessage[0]==="WHERE" ||
+        wordsInMessage[0]==="HOW"||
+        wordsInMessage[0]==="WHY"||
+        wordsInMessage[0]==="WHEN" ||
+        wordsInMessage[0]==="QUERY") {
         return "WOLFRAM_QUERY";
-        }
-    else if(messageArr[0] ==="TRANSLATE"){
+    } else if(wordsInMessage[0] ==="TRANSLATE") {
         return "TRANSLATE_QUERY";
-    }
-    else if(messageArr[0] ==="NEWS"){
+    } else if(wordsInMessage[0] ==="NEWS") {
         return "NEWS_QUERY";
-    }
-    else if(messageArr[0] ==="TEXTNET"){
+    } else if(wordsInMessage[0] ==="TEXTNET") {
         return "TEXTNET_HELP_QUERY";
-    }
-    else if(messageArr[0] ==="DIRECTIONS"){
+    } else if(wordsInMessage[0] ==="DIRECTIONS") {
         return "DIRECTIONS_QUERY";
-    }
-    else if(messageArr[0] ==="RECOMMEND"){
+    } else if(wordsInMessage[0] ==="RECOMMEND") {
         return "RECOMMEND_QUERY";
-    }
-    else{
+    } else {
         return "INVALID_QUERY";
     }
-
 }
 
 module.exports = {

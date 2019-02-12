@@ -1,45 +1,42 @@
 const axios = require('axios');
 
 async function getResponse(message) {
-  let near_index = message.indexOf(" near ");
-  let in_index =  message.indexOf(" in ");
+    let indexOfNear = message.indexOf(" near ");
+    let indexOfIn = message.indexOf(" in ");
 
-  if(in_index > 0 && near_index === -1){
-    const errMessage = "Your query is invalid, try resending the query formatted as: '" + message.substring(message.indexOf("recommend"), message.indexOf(" in ")).trim() + " 'near' " + message.substring( message.indexOf(" in ")+4)+ "'";
-    return errMessage;
-  }
+    if (indexOfIn > 0 && indexOfNear === -1) {
+        const errorMessage = "Your query is invalid, try resending the query formatted as: '" + message.substring(message.indexOf("recommend"), message.indexOf(" in ")).trim() + " 'near' " + message.substring(message.indexOf(" in ") + 4) + "'";
+        return errorMessage;
+    }
 
-  let input_term = encodeURIComponent(message.substring(message.indexOf("recommend") + 10, message.lastIndexOf(" near ")).trim());
-  let input_location = encodeURIComponent(message.substring(message.lastIndexOf(" near ") + 6, message.length).trim());
+    let businessQueried = encodeURIComponent(message.substring(message.indexOf("recommend") + 10, message.lastIndexOf(" near ")).trim());
+    let locationQueried = encodeURIComponent(message.substring(message.lastIndexOf(" near ") + 6, message.length).trim());
 
-  let yelp_req = `https://api.yelp.com/v3/businesses/search?term=${input_term}&location=${input_location}&limit=5&open_now=true`;
+    let yelpAPIRequest = `https://api.yelp.com/v3/businesses/search?term=${businessQueried}&location=${locationQueried}&limit=5&open_now=true`;
 
-  let res_arr = [];
-  let result = '';
+    let recommendationResults = '';
+    let response;
 
-  return await axios.get(yelp_req,
-  {
-      headers: {"Authorization" : `Bearer ${process.env.YELP_API_KEY}`}
-  })
-  .then((response) => {
-      let count = 1;
-      response.data.businesses.forEach(el => {
-          let biz = {
-              name: el.name,
-              rating: el.rating,
-              distance: `${Math.round(el.distance)} meters`,
-              display_phone: el.display_phone,
-              address: `${el.location.address1}, ${el.location.city} ${el.location.state}`
-          };
-          res_arr.push(biz);
-          result += `\n\n${count}: ${biz.name} \nRating: ${biz.rating} / 5 \nDistance: ${biz.distance} \nPhone: ${biz.display_phone} \nAddress: ${biz.address}\n\n`;
-          count++;
-      });
-  })
-  .then(() => result)
-  .catch(function (error) {
-      console.log('error :(' + error);
-  });
+    try {
+        response = await axios.get(yelpAPIRequest, { 
+            headers: { "Authorization": `Bearer ${process.env.YELP_API_KEY}` }
+        });
+        let count = 1;
+        response.data.businesses.forEach(el => {
+            let business = {
+                name: el.name,
+                rating: el.rating,
+                distance: `${Math.round(el.distance)} meters`,
+                displayPhone: el.displayPhone,
+                address: `${el.location.address1}, ${el.location.city} ${el.location.state}`
+            };
+            recommendationResults += `\n\n${count}: ${business.name} \nRating: ${business.rating} / 5 \nDistance: ${business.distance} \nPhone: ${business.displayPhone} \nAddress: ${business.address}\n\n`;
+            count++;
+        });
+        return recommendationResults;
+    } catch (e) {
+        return "Unable to get recommendations, it's not you, it's us </3.";
+    }
 }
 
 module.exports = {

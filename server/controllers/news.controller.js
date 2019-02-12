@@ -3,8 +3,9 @@ const axios = require('axios')
 async function getResponse() {
   let newsResults = [];
   let errorMessage = "Unable to find top news headlines right now.  It's not you, it's us </3";
+  let response;
   try {
-    let response = await axios.get(`https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=${process.env.NEWS_KEY}`)
+    response = await axios.get(`https://newsapi.org/v2/top-headlines?sources=cnn&apiKey=${process.env.NEWS_KEY}`)
   } catch (e) {
     return errorMessage;
   }
