@@ -3,13 +3,11 @@ const fs = require("fs");
 const path = require('path');
 
 async function translate(stringToTranslate, languageTo) {
-  // Your Google Cloud Platform project ID
-  translateResult = "";
 
   // Instantiates a client
   const translate = new Translate();
-  let rawdata = fs.readFileSync(path.resolve(__dirname, "../helpers/languageCode.json"));
-  let languages = JSON.parse(rawdata);
+  let languageCodesJSON = fs.readFileSync(path.resolve(__dirname, "../helpers/languageCode.json"));
+  let languages = JSON.parse(languageCodesJSON);
   var langCode = null;
   for (var i = 0; i < languages.length; i++) {
     if (languageTo.toLowerCase() === languages[i]["name"].toLowerCase()) {
@@ -21,6 +19,7 @@ async function translate(stringToTranslate, languageTo) {
     return `Unfortunately, ${languageTo} is not a language we can translate to!`
   }
 
+  
   return await new Promise((resolve, reject) => {
     translate
       .translate(stringToTranslate, langCode)
