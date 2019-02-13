@@ -71,7 +71,7 @@ async function getResponse(message) {
             return textPreface + "\n" + resultString;
         }
     } else {
-        return "Directions not found :( \nPlease check your formatting.";
+        return `Directions not found :( \n Error: ${response.data.status}`;
     }
 }
 
