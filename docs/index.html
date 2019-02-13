@@ -15,51 +15,54 @@
         width: 100%;
     }
     .logo-container{
-        width: 100%;
-        height: 100%;
-        background-image: url("img/TextNet_Mosaic.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center; 
+        width: 100vw;
+    }
+
+    .logo img{
+        height: 300px;
+        display: block;
+        margin: 0 auto;
+        margin-top:-80px;
     }
 
     .number-container{
-        position: fixed;
+        margin-top:-130px;
         text-align: center;
         font-family: 'Quicksand', sans-serif;
-        font-size:2rem;
-        top:55%;
-        left:0;
-        right:0;
+        font-size:1.5rem;
     }
 
-    @media only screen and (max-width: 1200px) {
+    @media only screen and (max-width: 600px) {
         .number-container{
-            font-size:3vw;
-        }
-    }
-    @media only screen and (max-width: 1000px) {
-        .number-container{
-            font: size 2.5vw;
+            margin-top:-130px;
+            text-align: center;
+            font-family: 'Quicksand', sans-serif;
+            font-size:1rem;
         }
     }
 
-    @media only screen and (max-width: 800px) {
-        .number-container{
-            font-size:5vw;
-        }
+    .video-container{
+        text-align: center;
     }
 
  
 </style>
 <body>
     <div class ="logo-container">
+        <div class="logo">
+            <img src="img/TextNet_Black.png"> 
+        </div>
         <div class="number-container">
             <h4 style="margin-block-end: 0px;">Internet over SMS, text 'textnet' to:</h4>
             <h1 style="margin-block-start: 0px; margin-block-end: 0px;">1-613-777-2042</h1>
             <h4 style="margin-block-start: 0px;"></h4>
         </div>
+    </div>
+    <div class="video-container">
+        <video width="100%" height="350" playsinline autoplay muted loop>
+                <source src="img/TextNetDemoV2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+        </video>
     </div>
 </body>
 </html>
