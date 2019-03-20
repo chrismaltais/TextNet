@@ -35,15 +35,17 @@ async function getResponse(message) {
     // Get Transportation Mode
     let transportationMode = getTransportationMode(message);
 
+    // Call Google API to get directions
     let response = await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${originAddress}&destination=${destAddress}&mode=${transportationMode}&key=${process.env.MAPS_API_KEY}`)
-    //Parse Directions
+    
+    // Parse Directions
     if (response.data.status === 'OK') {
 
         // Parse HTML Directions from Google API
         let resultString = parseHTMLDirections(response);
-        
+
         // Confirm transportation mode and destination at beginning of text
-        let textPreface = `${transportationMode.charAt(0).toUpperCase() + transportationMode.substring(1)}` + " directions to " + `${destAddressRaw}`;
+        let textPreface = getTextPreface(transportationMode, rawDestinationAddress);
 
         // Create a string to append to text if the text is over 1000 characters long
         let trailer = "\n .... [Directions too long. Submit another request once you reach the last direction in the list]";
@@ -81,11 +83,15 @@ async function getTransportationMode(message) {
         return 'walking';
     } else if (userSelectedTransportMode == ("bike") || userSelectedTransportMode == ("biking")) {
         return 'bicycling';
-    } else if (userSelectedTransportMode == ("transit") || userSelectedTransportMode == ("bus")) {
+    } else if (userSelectedTransportMode == ("transit") || userSelectedTransportMode == ("bussing")) {
         return'transit';
     } else {
         return 'driving';
     }
+}
+
+async function getTextPreface(transportationMode, rawDestinationAddress) {
+    return `${transportationMode.charAt(0).toUpperCase() + transportationMode.substring(1)}` + " directions to " + `${rawDestinationAddress}`;
 }
 
 async function parseHTMLDirections(directionsAPIResponseJSON) {
@@ -109,7 +115,13 @@ async function parseHTMLDirections(directionsAPIResponseJSON) {
 }
 
 module.exports = {
-    getResponse
+    getResponse,
+    isValidFormat,
+    getRawOriginAddress,
+    getRawDestinationAddress,
+    getTransportationMode,
+    getTextPreface,
+    parseHTMLDirections
 }
 
 
