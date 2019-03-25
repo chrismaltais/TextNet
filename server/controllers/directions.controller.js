@@ -30,8 +30,6 @@ async function getResponse(message) {
         return invalidFormattingMessage;
     }
 
-    console.log(`Directions - Origin: ${rawOriginAddress}, Destination: ${rawDestinationAddress}`);
-
     // Get Transportation Mode
     let transportationMode = await getTransportationMode(message);
 

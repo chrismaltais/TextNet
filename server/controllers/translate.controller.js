@@ -18,8 +18,6 @@ async function translate(stringToTranslate, languageTo) {
     try {
         let translatedResponses = await translateInstance.translate(stringToTranslate, langCode)
         const translation = translatedResponses[0];
-        console.log(`Text: ${stringToTranslate}`);
-        console.log(`Translation: ${translation}`);
         return translation;
     } catch (e) {
         return `Unfortunately we can\'t translate that right now, please try again later!`
