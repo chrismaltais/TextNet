@@ -1,7 +1,7 @@
 [![codecov](https://codecov.io/gh/chrismaltais/TextNet/branch/master/graph/badge.svg)](https://codecov.io/gh/chrismaltais/TextNet)
 [![CircleCI](https://circleci.com/gh/chrismaltais/TextNet.svg?style=svg)](https://circleci.com/gh/chrismaltais/TextNet)
 # TextNet
-The new and improved 490 Capstone Project
+Primitive Internet via SMS.
 
 ## Usage 
 ### Docker
