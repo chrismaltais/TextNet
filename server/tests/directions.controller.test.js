@@ -1,5 +1,11 @@
+// Handle env vars
+const path = require('path');
+let envPath = path.join(__dirname + '../../.env');
+require('dotenv').config({path: envPath});;
+
 const axios = require('axios');
 const {directions} = require('./../controllers');
+const {directionsAssert} = require('./assertion_data');
 
 describe('Directions Controller:', () => {
     describe('Function: getResponse()', () => {
@@ -81,7 +87,21 @@ describe('Directions Controller:', () => {
 
     describe('Function: parseHTMLDirections(directionsAPIResponseJSON)', () => {
         it('should return list of directions that are formatted for SMS', async () => {
-            
+            let originAddress = directionsAssert.parseHTMLDirections.origin;
+            let destAddress = directionsAssert.parseHTMLDirections.destination;
+            let transportationMode = directionsAssert.parseHTMLDirections.transportationMode;
+            let expectedResult = directionsAssert.parseHTMLDirections.result;
+            let response = await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${originAddress}&destination=${destAddress}&mode=${transportationMode}&key=${process.env.MAPS_API_KEY}`);
+            let directionsList = await directions.parseHTMLDirections(response);
+            expect(directionsList).toBe(expectedResult);
+        });
+    });
+
+    describe('Function: getResponse(message)', () => {
+        it('should return list of directions that are formatted for SMS including text preface, given just a message', async () => {
+            let message = directionsAssert.correctQuery;
+            let directionResults = await directions.getResponse(message);
+            expect(directionResults).toBe(directionsAssert.getResponse.result);
         });
     });
 

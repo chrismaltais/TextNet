@@ -8,19 +8,19 @@ async function getResponse(message) {
     message = message.trim(); 
 
     // Check for validity of formatting
-    messageIsValidFormat = isValidFormat(message);
+    messageIsValidFormat = await isValidFormat(message);
     if (!messageIsValidFormat) {
         return invalidFormattingMessage;
     }
 
     // Get Origin Address
-    let rawOriginAddress = getRawOriginAddress(message);
+    let rawOriginAddress = await getRawOriginAddress(message);
     
     // Get URI Encoded Origin Address
-    let originAddress = encodeURIComponent(rawOriginAdress);
+    let originAddress = await encodeURIComponent(rawOriginAddress);
 
     // Get Destination Address
-    let rawDestinationAddress = getRawDestinationAddress(message);
+    let rawDestinationAddress = await getRawDestinationAddress(message);
 
     // Get URI Encoded Destination Address
     let destAddress = encodeURIComponent(rawDestinationAddress);
@@ -33,19 +33,19 @@ async function getResponse(message) {
     console.log(`Directions - Origin: ${rawOriginAddress}, Destination: ${rawDestinationAddress}`);
 
     // Get Transportation Mode
-    let transportationMode = getTransportationMode(message);
+    let transportationMode = await getTransportationMode(message);
 
     // Call Google API to get directions
-    let response = await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${originAddress}&destination=${destAddress}&mode=${transportationMode}&key=${process.env.MAPS_API_KEY}`)
+    let response = await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${originAddress}&destination=${destAddress}&mode=${transportationMode}&key=${process.env.MAPS_API_KEY}`);
     
     // Parse Directions
     if (response.data.status === 'OK') {
 
         // Parse HTML Directions from Google API
-        let resultString = parseHTMLDirections(response);
+        let resultString = await parseHTMLDirections(response);
 
         // Confirm transportation mode and destination at beginning of text
-        let textPreface = getTextPreface(transportationMode, rawDestinationAddress);
+        let textPreface = await getTextPreface(transportationMode, rawDestinationAddress);
 
         // Create a string to append to text if the text is over 1000 characters long
         let trailer = "\n .... [Directions too long. Submit another request once you reach the last direction in the list]";
@@ -112,6 +112,7 @@ async function parseHTMLDirections(directionsAPIResponseJSON) {
 
         directionResultsString = directionList.join('\n\n');
     });
+    return directionResultsString;
 }
 
 module.exports = {
