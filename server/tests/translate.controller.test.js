@@ -1,3 +1,8 @@
+// Handle env vars
+const path = require('path');
+let envPath = path.join(__dirname + '../../.env');
+require('dotenv').config({path: envPath});
+
 const {translate} = require('./../controllers');
 //const {directionsAssert} = require('./assertion_data');
 
@@ -58,26 +63,19 @@ describe('Translate Controller:', () => {
 
     describe('Function: translate(stringToTranslate, languageTo)', () => {
         it('should return a translated string', async () => {
-            // To do
-        });
-
-        it('should return an error if the service is not active', async () => {
             let stringToTranslate = 'hello';
             let languageTo = 'french';
-            let expectedResult = `Unfortunately we can\'t translate that right now, please try again later!`
+            let expectedResult = `Bonjour`
             let result = await translate.translate(stringToTranslate, languageTo);
             expect(result).toBe(expectedResult);
         });
+
     });
 
     describe('Function: getResponse(message', () => {
         it('should parse an incoming query, and return a translated string', async () => {
-            // To do
-        });
-
-        it('should return an error if the service is unavailable', async () => {
             let message = 'translate hello to french';
-            let expectedResult = `Unfortunately we can\'t translate that right now, please try again later!`
+            let expectedResult = `Bonjour`;
             let result = await translate.getResponse(message);
             expect(result).toBe(expectedResult);
         });
