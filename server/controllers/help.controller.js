@@ -1,4 +1,4 @@
-function getResponse() {
+async function getResponse() {
     let message = [
         `--- TextNet Help ---`,
         '\n1. "textnet" - returns lists of available functions',

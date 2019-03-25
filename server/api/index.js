@@ -22,7 +22,7 @@ module.exports = (controllers) => {
           } else if (messageParsed === "RECOMMEND_QUERY") {
               response = await recommend.getResponse(messageRaw);
           } else if (messageParsed === "TEXTNET_HELP_QUERY") {
-              response = help.getResponse();
+              response = await help.getResponse();
           } else {
               response = 'Your query is invalid, please try again.  Texting "textnet" will return our formatting guidelines :)';
           }
