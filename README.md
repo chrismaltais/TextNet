@@ -1,4 +1,5 @@
 [![codecov](https://codecov.io/gh/chrismaltais/TextNet/branch/master/graph/badge.svg)](https://codecov.io/gh/chrismaltais/TextNet)
+[![jest](https://jestjs.io/img/jest-badge.svg)](https://github.com/facebook/jest)
 [![CircleCI](https://circleci.com/gh/chrismaltais/TextNet.svg?style=svg)](https://circleci.com/gh/chrismaltais/TextNet)
 # TextNet
 Primitive Internet via SMS.
