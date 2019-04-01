@@ -60,6 +60,13 @@ describe('Directions Controller:', () => {
             expect(result).toBe(transportationMode);
         });
 
+        it('should return \'bicycling\' if query specifies biking as the mode of transportation', async () => {
+            let query = 'directions biking from Queens University to 199 William Street';
+            let transportationMode = 'bicycling'
+            let result = await directions.getTransportationMode(query);
+            expect(result).toBe(transportationMode);
+        });
+
         it('should return \'transit\' if query specifies bussing as the mode of transportation', async () => {
             let query = 'directions bussing from Queens University to 199 William Street';
             let transportationMode = 'transit'
