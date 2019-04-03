@@ -2,7 +2,7 @@ const {app} = require('./../server');
 const {message} = require('./../controllers');
 
 describe('Message Controller:', () => {
-    describe('Function: parse()', () => {
+    describe('Function: parse(message)', () => {
         describe('Invalid Queries', () => {
             it('should return INVALID_QUERY if no keywords detected', async () => {
                 let testMessage = 'hello';

@@ -8,12 +8,6 @@ const {directions} = require('./../controllers');
 const {directionsAssert} = require('./assertion_data');
 
 describe('Directions Controller:', () => {
-    describe('Function: getResponse()', () => {
-        it('should return the directions given correct format', async () => {
-
-        });
-    });
-
     describe('Function: isValidFormat(query)', () => {
         it('should return false if query does not include \'from\' keyword', async () => {
             let query = 'directions to Queens University';

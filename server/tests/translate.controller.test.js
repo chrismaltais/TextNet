@@ -72,7 +72,7 @@ describe('Translate Controller:', () => {
 
     });
 
-    describe('Function: getResponse(message', () => {
+    describe('Function: getResponse(message)', () => {
         it('should parse an incoming query, and return a translated string', async () => {
             let message = 'translate hello to french';
             let expectedResult = `Bonjour`;

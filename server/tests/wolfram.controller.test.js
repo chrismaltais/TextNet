@@ -6,7 +6,7 @@ require('dotenv').config({path: envPath});
 const {wolfram} = require('../controllers');
 
 describe('Wolfram Controller', () => {
-    describe('Function: getResponse()', () => {
+    describe('Function: getResponse(message)', () => {
         it('should return an answer given correct formatting', async () => {
             let message = 'why is the sky blue';
             let expectedResult = 'The sky\'s blue color is a result of the effect of Rayleigh scattering. Shorter-wavelength blue light is more strongly scattered in the Earth\'s atmosphere than longer-wavelength red light. As a result, the human eye perceives the color blue when looking at the sky';
