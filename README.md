@@ -4,6 +4,8 @@
 # TextNet
 Primitive Internet via SMS.
 
+A Queen's University capstone project, see [this report](https://github.com/chrismaltais/TextNet/blob/master/What-is-TextNet.pdf) for more detail.
+
 ## Usage 
 ### Docker
 `docker build -t textnet .`
