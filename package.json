@@ -23,7 +23,7 @@
     "twilio": "^3.27.1"
   },
   "devDependencies": {
-    "codecov": "^3.2.0",
+    "codecov": "^3.7.1",
     "jest": "^23.6.0",
     "supertest": "^3.4.1"
   }
